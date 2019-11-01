@@ -21,13 +21,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  submit() {
+  async submit() {
     const credentials = {
       username: this.inputUsername,
       password: this.inputPassword
     };
-    this.loginService.loginHttp(credentials);
-    if(this.loginService.loginHttp(credentials)){
+    if(await this.loginService.loginHttp(credentials)){
       this.authenticated = true;
     }
     else {
