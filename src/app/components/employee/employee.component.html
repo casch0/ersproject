@@ -1,1 +1,39 @@
-<p>employee works!</p>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Create new reimbursement ticket!
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">New Reimbursement Ticket</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input [(ngModel)]="amount" name="amount" type="money" placeholder="$0.00">
+                <select [(ngModel)]="type" name="type">
+                    <option value="1">Lodging</option>
+                    <option value="2">Travel</option>
+                    <option value="3">Food</option>
+                    <option value="4">Other</option>
+                </select>
+                <br>
+                <textarea [(ngModel)]="description" name="description" placeholder="Description" cols="50"
+                    rows="8"></textarea>
+                <form>
+                    Select a file: <input type="file" name="myFile">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="submitTicket()" data-dismiss="modal">
+                    Submit Ticket</button>
+            </div>
+        </div>
+    </div>
+</div>

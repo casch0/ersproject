@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginService } from './services/login.service';
+import { TicketService } from './services/ticket.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { LoginService } from './services/login.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [LoginService],
+  providers: [LoginService, TicketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
