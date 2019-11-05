@@ -24,7 +24,7 @@ import { TicketService } from './services/ticket.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [LoginService, TicketService],
   bootstrap: [AppComponent]

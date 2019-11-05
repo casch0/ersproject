@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TicketService } from 'src/app/services/ticket.service';
+import { LoginService } from 'src/app/services/login.service'
 
 @Component({
   selector: 'app-employee',
@@ -27,6 +28,9 @@ export class EmployeeComponent implements OnInit {
       description: this.description
     }
     const ret = await this.ticketService.newTicketHttp(newTicket);
+    this.type = 0;
+    this.amount = 0;
+    this.description = "";
     console.log(ret);
   }
 

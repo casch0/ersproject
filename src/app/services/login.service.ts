@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Session } from 'protractor';
+import { TicketService } from './ticket.service';
 
 /* Note that services will generally have this decorator */
 @Injectable({
@@ -8,8 +10,9 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
 
-  currentlyLoggedIn = false;
   authenticated = false;
+  currentRole = 0;
+  currentUser = "";
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
@@ -25,6 +28,9 @@ export class LoginService {
     var b = JSON.parse(JSON.stringify(data));
     if (b.username == '') this.authenticated = false;
     else this.authenticated = true;
+    this.currentRole = b.role;
+    this.currentUser = b.username;
+
     return this.authenticated;
   }
 }
