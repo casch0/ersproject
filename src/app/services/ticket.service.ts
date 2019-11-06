@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginService } from './login.service';
+import { Reimbursement } from '../models/reimbursement';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,20 @@ import { LoginService } from './login.service';
 export class TicketService {
 
   constructor(private httpClient: HttpClient, private loginService: LoginService) { }
+
+  async viewTicketHttp(credentials: { username: string, role: number }) {
+    const viewCredentials = {
+      username: credentials.username,
+      role: credentials.role
+    };
+    const url = 'http://localhost:8081/Project1/view';
+    const data = await this.httpClient.post(url, viewCredentials).toPromise();
+    var tickets:Array<Reimbursement>;
+    tickets = JSON.parse(JSON.stringify(data));
+    return tickets;
+  }
+
+
 
   async newTicketHttp(ticket: {type: number, amount: number, description: string}) {
     const req = {
@@ -20,7 +35,8 @@ export class TicketService {
 
     const data = await this.httpClient.post(url, req).toPromise();
 
-    var ret = JSON.parse(JSON.stringify(data));
+    var ret:Reimbursement = JSON.parse(JSON.stringify(data));
+
     return ret;
   }
 

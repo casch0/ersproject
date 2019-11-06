@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TicketService } from 'src/app/services/ticket.service';
-import { LoginService } from 'src/app/services/login.service'
+import { LoginService } from 'src/app/services/login.service';
+import { Reimbursement } from 'src/app/models/reimbursement';
 
 @Component({
   selector: 'app-employee',
@@ -12,27 +13,40 @@ export class EmployeeComponent implements OnInit {
   type = 0;
   amount = 0;
   description = "";
-  
-  
 
 
-  constructor(private ticketService: TicketService) { }
 
+  constructor(private ticketService: TicketService, private loginService: LoginService) { }
+
+  tickets: Reimbursement[];
   ngOnInit() {
+    this.getTickets().then(function (ticketArray) {
+      ticketArray.forEach(ticket => {
+        console.log(ticket);
+        this.tickets.push(ticket);
+      });
+    }
+    )
   }
 
-  async submitTicket(){
+  async submitTicket() {
     const newTicket = {
       type: this.type,
       amount: this.amount,
       description: this.description
     }
     const ret = await this.ticketService.newTicketHttp(newTicket);
-    this.type = 0;
-    this.amount = 0;
-    this.description = "";
-    console.log(ret);
+    this.tickets.push(ret);
+    console.log(this.tickets);
   }
 
-  
+  async getTickets() {
+    const credentials = {
+      username: this.loginService.currentUser,
+      role: 1
+    }
+    var tickets = await this.ticketService.viewTicketHttp(credentials);
+    return tickets;
+  }
+
 }

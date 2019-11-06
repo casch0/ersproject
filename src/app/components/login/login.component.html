@@ -15,7 +15,7 @@
                 Invalid credentials.
             </div>
       <input [(ngModel)]="inputUsername" type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-      <input [(ngModel)]="inputPassword" type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+      <input [(ngModel)]="inputPassword" type="password" id="password" class="fadeIn third" name="login" placeholder="password">
       <input [disabled]="!(inputUsername && inputPassword)"
       (click)="submit()" type="submit" class="fadeIn fourth" value="Log In">
     </form>
