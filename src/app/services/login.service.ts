@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Session } from 'protractor';
 import { TicketService } from './ticket.service';
 
-/* Note that services will generally have this decorator */
 @Injectable({
   providedIn: 'root'
 })

@@ -9,6 +9,14 @@ const routes: Routes = [{
   path: 'login',
   component: LoginComponent
 }, {
+  path: 'main',
+  component: MainComponent,
+  children: [{
+      path:'',
+      redirectTo: 'employee',
+      pathMatch: 'full' 
+  }]
+}, {
   path: 'employee',
   component: EmployeeComponent
 }, {

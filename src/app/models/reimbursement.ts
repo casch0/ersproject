@@ -5,8 +5,8 @@ export class Reimbursement {
     resolved: Date;
     description: string;
     receipt: Blob;
-    author: number;
-    resolver: number;
+    author: string;
+    resolver: string;
     status: string;
     type: string;
 }

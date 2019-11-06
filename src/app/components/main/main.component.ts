@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  manager = false;
+
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
+    if (this.loginService.currentRole === 2){
+      this.manager = true;
+    }
   }
 
 }
