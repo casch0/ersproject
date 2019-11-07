@@ -36,6 +36,12 @@
         </div>
     </div>
 </div>
-<section id=ticketview>
 
+<section id=ticketview>
+    <div class="card" *ngFor="let ticket of tickets">
+        <h5 class="card-header">{{ticket.submitted}}  Status: {{ticket.status}}   Type: {{ticket.type}}  Amount: ${{ticket.amount}}</h5>
+        <div class="card-body">
+            <p class="card-text">{{ticket.description}}</p>
+        </div>
+    </div>
 </section>

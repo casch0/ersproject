@@ -1,8 +1,8 @@
 export class Reimbursement {
     id: number;
     amount: number;
-    submitted: Date;
-    resolved: Date;
+    submitted: string;
+    resolved: string;
     description: string;
     receipt: Blob;
     author: string;
