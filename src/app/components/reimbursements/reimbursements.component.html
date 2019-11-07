@@ -1,22 +1,36 @@
-<h1>Reimbursment Management</h1>
-
-<div class="row">
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+<section id=ticketview>
+    <div class="card" *ngFor="let ticket of tickets">
+        <div *ngIf="ticket.status=='Pending'">
+        <h5 class="card-header">{{ticket.submitted}} Status: {{ticket.status}} Type: {{ticket.type}} Amount:
+            ${{ticket.amount}}</h5>
+        <div class="card-body">
+            <p class="card-text">{{ticket.description}}</p>
         </div>
     </div>
 </div>
+</section>
+
+
+<section id=ticketview>
+    <div class="card" *ngFor="let ticket of tickets">
+            <div *ngIf="ticket.status=='Approved'">
+        <h5 class="card-header">{{ticket.submitted}} Status: {{ticket.status}} Type: {{ticket.type}} Amount:
+            ${{ticket.amount}}</h5>
+        <div class="card-body">
+            <p class="card-text">{{ticket.description}}</p>
+        </div>
+    </div>
+</div>
+</section>
+
+<section id=ticketview>
+        <div class="card" *ngFor="let ticket of tickets">
+                <div *ngIf="ticket.status=='Denied'">
+            <h5 class="card-header">{{ticket.submitted}} Status: {{ticket.status}} Type: {{ticket.type}} Amount:
+                ${{ticket.amount}}</h5>
+            <div class="card-body">
+                <p class="card-text">{{ticket.description}}</p>
+            </div>
+        </div>
+    </div>
+    </section>
