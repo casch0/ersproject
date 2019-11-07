@@ -1,36 +1,47 @@
-<section id=ticketview>
-    <div class="card" *ngFor="let ticket of tickets">
-        <div *ngIf="ticket.status=='Pending'">
-        <h5 class="card-header">{{ticket.submitted}} Status: {{ticket.status}} Type: {{ticket.type}} Amount:
-            ${{ticket.amount}}</h5>
-        <div class="card-body">
-            <p class="card-text">{{ticket.description}}</p>
+<section>
+    <h2>Pending Requests:</h2>
+    <div class="ticketbox" *ngFor="let ticket of pending">
+        <div *ngIf="ticket.status==='Pending'">
+            <h5>Author: {{ticket.author}}</h5>
+            <h5>Type: {{ticket.type}}</h5>
+            <h5>Amount: ${{ticket.amount}}</h5>
+            <h5>Submitted on {{ticket.submitted}}</h5>
+            <div>
+                <p>{{ticket.description}}</p>
+            </div>
+            <button type="button" (click)="approveTicket(ticket)">Approve Request</button>
+            <button type="button" (click)="denyTicket(ticket)">Deny Request</button>
         </div>
     </div>
-</div>
-</section>
+    <br>
+    <h2>Approved Requests:</h2>
 
-
-<section id=ticketview>
-    <div class="card" *ngFor="let ticket of tickets">
-            <div *ngIf="ticket.status=='Approved'">
-        <h5 class="card-header">{{ticket.submitted}} Status: {{ticket.status}} Type: {{ticket.type}} Amount:
-            ${{ticket.amount}}</h5>
-        <div class="card-body">
-            <p class="card-text">{{ticket.description}}</p>
-        </div>
-    </div>
-</div>
-</section>
-
-<section id=ticketview>
-        <div class="card" *ngFor="let ticket of tickets">
-                <div *ngIf="ticket.status=='Denied'">
-            <h5 class="card-header">{{ticket.submitted}} Status: {{ticket.status}} Type: {{ticket.type}} Amount:
-                ${{ticket.amount}}</h5>
-            <div class="card-body">
-                <p class="card-text">{{ticket.description}}</p>
+    <div class="ticketbox" *ngFor="let ticket of approved">
+        <div *ngIf="ticket.status==='Approved'">
+            <h5>Author: {{ticket.author}}</h5>
+            <h5>Type: {{ticket.type}}</h5>
+            <h5>Amount: ${{ticket.amount}}</h5>
+            <h5>Resolver: {{ticket.resolver}}</h5>
+            <h5>Submitted on {{ticket.submitted}}</h5>
+            <h5>{{ticket.status}} on {{ticket.resolved}}</h5>
+            <div>
+                <p>{{ticket.description}}</p>
             </div>
         </div>
     </div>
-    </section>
+    <br>
+    <h2>Denied Requests:</h2>
+    <div class="ticketbox" *ngFor="let ticket of denied">
+        <div *ngIf="ticket.status==='Denied'">
+            <h5>Author: {{ticket.author}}</h5>
+            <h5>Type: {{ticket.type}}</h5>
+            <h5>Amount: ${{ticket.amount}}</h5>
+            <h5>Resolver: {{ticket.resolver}}</h5>
+            <h5>Submitted on {{ticket.submitted}}</h5>
+            <h5>{{ticket.status}} on {{ticket.resolved}}</h5>
+            <div>
+                <p>{{ticket.description}}</p>
+            </div>
+        </div>
+    </div>
+</section>

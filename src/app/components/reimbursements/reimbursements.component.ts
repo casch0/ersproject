@@ -10,6 +10,9 @@ import { Reimbursement } from 'src/app/models/reimbursement';
 })
 export class ReimbursementsComponent implements OnInit {
   tickets: Reimbursement[];
+  pending: Reimbursement[] = [];
+  approved: Reimbursement[]= [];
+  denied: Reimbursement[]= [];
   constructor(private ticketService: TicketService, private loginService: LoginService) { }
 
   ngOnInit() {
@@ -25,11 +28,6 @@ export class ReimbursementsComponent implements OnInit {
     this.tickets = await this.ticketService.viewTicketHttp(credentials);
     if (this.tickets !== undefined && this.tickets.length != 0) {
       this.tickets.forEach(ticket => {
-        switch ("" + ticket.status) {
-          case "1": { ticket.status = "Pending"; break; }
-          case "2": { ticket.status = "Approved"; break; }
-          case "3": { ticket.status = "Declined"; break; }
-        }
         switch ("" + ticket.type) {
           case "1": { ticket.type = "Lodging"; break; }
           case "2": { ticket.type = "Travel"; break; }
@@ -38,13 +36,42 @@ export class ReimbursementsComponent implements OnInit {
         }
         var d = new Date(ticket.submitted);
         var formattedDate = d.getMonth() + "/" + (d.getDate() + 1) + "/" + d.getFullYear();
-        var hours = (d.getHours() < 10) ? "0" + d.getHours() : d.getHours();
-        var minutes = (d.getMinutes() < 10) ? "0" + d.getMinutes() : d.getMinutes();
-        var formattedTime = hours + ":" + minutes;
-
-        formattedDate = formattedDate + " " + formattedTime;
         ticket.submitted = formattedDate
+        var e = new Date(ticket.resolved);
+        var formattedDate = e.getMonth() + "/" + (e.getDate() + 1) + "/" + e.getFullYear();
+        ticket.resolved = formattedDate
+        switch ("" + ticket.status) {
+          case "1": { ticket.status = "Pending"; 
+          this.pending.push(ticket); break; }
+          case "2": { ticket.status = "Approved"; 
+          this.approved.push(ticket); break; }
+          case "3": { ticket.status = "Declined"; 
+          this.denied.push(ticket); break; }
+        }
       });
     }
+  }
+
+  async approveTicket(ticket:Reimbursement) {
+    const mod = {
+      status : "2",
+      resolver : this.loginService.currentUser,
+      author : ticket.author,
+      id : ticket.id
+      }
+    const ret = await this.ticketService.updateTicketHttp(mod);
+    this.getTickets();
+  }
+
+  async denyTicket(ticket:Reimbursement) {
+    const mod = {
+    status : "3",
+    resolver : this.loginService.currentUser,
+    author : ticket.author,
+    id : ticket.id
+    }
+    const ret = await this.ticketService.updateTicketHttp(mod);
+    this.getTickets();
+ 
   }
 }

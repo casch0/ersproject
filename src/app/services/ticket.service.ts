@@ -40,6 +40,14 @@ export class TicketService {
     return ret;
   }
 
+  async updateTicketHttp(ticket: {status: string, resolver: string, author: string, id: number}) {
+    const url = 'http://localhost:8081/Project1/ers';
 
+    const data = await this.httpClient.post(url, ticket).toPromise();
+
+    var ret:Reimbursement = JSON.parse(JSON.stringify(data));
+
+    return ret;
+  }
 
 }

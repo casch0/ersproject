@@ -32,7 +32,6 @@ export class EmployeeComponent implements OnInit {
     }
     const ret = await this.ticketService.newTicketHttp(newTicket);
     this.getTickets();
-    console.log(this.tickets);
   }
 
   async getTickets() {
@@ -56,11 +55,6 @@ export class EmployeeComponent implements OnInit {
         }
         var d = new Date(ticket.submitted);
         var formattedDate = d.getMonth() + "/" + (d.getDate() + 1) + "/" + d.getFullYear();
-        var hours = (d.getHours() < 10) ? "0" + d.getHours() : d.getHours();
-        var minutes = (d.getMinutes() < 10) ? "0" + d.getMinutes() : d.getMinutes();
-        var formattedTime = hours + ":" + minutes;
-
-        formattedDate = formattedDate + " " + formattedTime;
         ticket.submitted = formattedDate
       });
     }
