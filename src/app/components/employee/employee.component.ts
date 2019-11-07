@@ -13,34 +13,32 @@ export class EmployeeComponent implements OnInit {
   type = 0;
   amount = 0;
   description = "";
+  
+  
 
 
+  constructor(private ticketService: TicketService, private loginService: LoginService ){ }
 
-  constructor(private ticketService: TicketService, private loginService: LoginService) { }
-
-  tickets: Reimbursement[];
   ngOnInit() {
-    this.getTickets().then(function (ticketArray) {
-      ticketArray.forEach(ticket => {
+    this.getTickets().then(function(tickets){
+      tickets.forEach(ticket => {
         console.log(ticket);
-        this.tickets.push(ticket);
       });
     }
-    )
-  }
+    )}
 
-  async submitTicket() {
+  async submitTicket(){
     const newTicket = {
       type: this.type,
       amount: this.amount,
       description: this.description
     }
     const ret = await this.ticketService.newTicketHttp(newTicket);
-    this.tickets.push(ret);
-    console.log(this.tickets);
+    var tickets = await this.getTickets();
+    console.log(tickets);
   }
-
-  async getTickets() {
+  
+  async getTickets(){
     const credentials = {
       username: this.loginService.currentUser,
       role: 1
