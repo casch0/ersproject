@@ -74,7 +74,7 @@ export class EmployeeComponent implements OnInit {
         }
         var d = new Date(ticket.submitted);
         var formattedDate = d.getMonth() + "/" + (d.getDate() + 1) + "/" + d.getFullYear();
-        ticket.submitted = formattedDate;
+        // ticket.submitted = formattedDate;
       });
     }
   }

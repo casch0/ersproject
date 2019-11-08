@@ -1,7 +1,12 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-    Create new reimbursement ticket!
-</button>
+<div class="row text-center m-5">
+    <div class="col-md-4 offset-md-4">
+        <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
+            data-target="#exampleModalCenter" style="display: center;">
+            Create new reimbursement ticket!
+        </button>
+    </div>
+</div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
@@ -43,20 +48,29 @@
 </div>
 
 <section>
-    <h2>Submitted Tickets:</h2>
-    <div class="ticketbox" *ngFor="let ticket of tickets">
-        <h5>Status: {{ticket.status}}</h5>
-        <h5>Type: {{ticket.type}}</h5>
-        <h5>Amount: ${{ticket.amount}}</h5>
-
-        <h5 *ngIf="ticket.resolver">Resolver: {{ticket.resolver}}</h5>
-        <h5>Submitted on {{ticket.submitted}}</h5>
-        <h5 *ngIf="ticket.resolver">{{ticket.status}} on {{ticket.resolved}}</h5>
-        <div>
-            <p>{{ticket.description}}</p>
-        </div>
-        <div>
-            <img [src]="ticket.receipt | safe: 'url'" alt="Uploaded receipt" style="max-height:300px;">
+    <div class="row no-gutters">
+        <div class="col-md-4" *ngFor="let ticket of tickets">
+            <div class="card mb-3 mx-auto" style="max-width: 540px; height:270px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img [src]="ticket.receipt | safe: 'url'" class="card-img" alt="No Uploaded Receipt"
+                            style="max-height: 270px;">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Status: {{ticket.status}}</h5>
+                            <h5 class="card-title">Amount: {{ticket.amount | currency}}</h5>
+                            <p class="card-text">Reimbursement Type: {{ticket.type}}</p>
+                            <p class="card-text">Description: {{ticket.description}}</p>
+                            <p class="card-text"><small class="text-muted">Submitted on:
+                                    {{ticket.submitted | date}}</small>
+                            </p>
+                            <p class="card-text" *ngIf="ticket.resolver"><small class="text-muted">Resolved on:
+                                    {{ticket.resolved | date}}</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
