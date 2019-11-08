@@ -21,11 +21,11 @@ export class EmployeeComponent implements OnInit {
   dirtyUrl: string;
 
 
-  constructor(private uploadService: UploadService, 
-    private ticketService: TicketService, 
+  constructor(private uploadService: UploadService,
+    private ticketService: TicketService,
     private loginService: LoginService,
     private sanitizer: DomSanitizer
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.getTickets();
@@ -36,7 +36,7 @@ export class EmployeeComponent implements OnInit {
     this.selectedFile = event.target.files[0]
   }
 
-  async onUpload(){
+  async onUpload() {
     let resp = await this.uploadService.uploadHttp(this.selectedFile);
     this.dirtyUrl = resp;
     this.responseUrl = this.sanitizer.bypassSecurityTrustUrl(resp);
@@ -61,6 +61,7 @@ export class EmployeeComponent implements OnInit {
     this.tickets = await this.ticketService.viewTicketHttp(credentials);
     if (this.tickets !== undefined && this.tickets.length != 0) {
       this.tickets.forEach(ticket => {
+        ticket.collapsed = true;
         switch ("" + ticket.status) {
           case "1": { ticket.status = "Pending"; break; }
           case "2": { ticket.status = "Approved"; break; }
@@ -77,5 +78,10 @@ export class EmployeeComponent implements OnInit {
         // ticket.submitted = formattedDate;
       });
     }
+  }
+  toggle(ticket: Reimbursement) {
+    if (ticket.collapsed === true)
+    {ticket.collapsed = false}
+    else {ticket.collapsed = true}
   }
 }

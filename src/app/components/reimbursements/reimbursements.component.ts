@@ -31,6 +31,7 @@ export class ReimbursementsComponent implements OnInit {
     this.denied= [];
     if (this.tickets !== undefined && this.tickets.length != 0) {
       this.tickets.forEach(ticket => {
+        ticket.collapsed=true;
         switch ("" + ticket.type) {
           case "1": { ticket.type = "Lodging"; break; }
           case "2": { ticket.type = "Travel"; break; }
@@ -76,5 +77,10 @@ export class ReimbursementsComponent implements OnInit {
     const ret = await this.ticketService.updateTicketHttp(mod);
     this.getTickets();
  
+  }
+  toggle(ticket: Reimbursement) {
+    if (ticket.collapsed === true)
+    {ticket.collapsed = false}
+    else {ticket.collapsed = true}
   }
 }

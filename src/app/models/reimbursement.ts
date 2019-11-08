@@ -9,4 +9,5 @@ export class Reimbursement {
     resolver: string;
     status: string;
     type: string;
+    collapsed: boolean;
 }

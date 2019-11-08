@@ -1,28 +1,36 @@
 <section>
-    <h2>Pending Requests:</h2>
+    <h2 style="text-align: center;">Pending Requests:</h2>
     <section>
         <div class="row no-gutters">
-            <div class="col-md-4" *ngFor="let ticket of pending">
-                <div class="card mb-3 mx-auto" style="max-width: 540px;height:270px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img [src]="ticket.receipt | safe: 'url'" class="card-img" alt="No Uploaded Receipt"
-                                style="max-height: 270px;">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Status: {{ticket.status}}</h5>
-                                <h5 class="card-title">Amount: {{ticket.amount | currency}}</h5>
-                                <p class="card-text">Reimbursement Type: {{ticket.type}}</p>
-                                <p class="card-text">Description: {{ticket.description}}</p>
-                                <button type="button" (click)="approveTicket(ticket)">Approve Request</button>
-                                <button type="button" (click)="denyTicket(ticket)">Deny Request</button>
-                                <p class="card-text"><small class="text-muted">Submitted on:
-                                        {{ticket.submitted | date}}</small>
-                                </p>
-                                <p class="card-text" *ngIf="ticket.resolver"><small class="text-muted">Resolved on:
-                                        {{ticket.resolved | date}}</small></p>
+            <div class="col-md-4" *ngFor="let ticket of pending" (click)="toggle(ticket)">
+                <div class="card mb-3 mx-auto" style="max-width: 540px;
+                    border-radius: 1rem;background-color: rgba(255, 255, 255, 0.8);">
+                    <div *ngIf="!ticket.collapsed">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img [src]="ticket.receipt | safe: 'url'" class="card-img" alt="No Uploaded Receipt"
+                                    style="max-height: 270px;">
                             </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Status: {{ticket.status}}</h5>
+                                    <h5 class="card-title">Amount: {{ticket.amount | currency}}</h5>
+                                    <p class="card-text">Reimbursement Type: {{ticket.type}}</p>
+                                    <p class="card-text">Description: {{ticket.description}}</p>
+                                    <button type="button" (click)="approveTicket(ticket)">Approve Request</button>
+                                    <button type="button" (click)="denyTicket(ticket)">Deny Request</button>
+                                    <p class="card-text"><small class="text-muted">Submitted on:
+                                            {{ticket.submitted | date}}</small>
+                                    </p>
+                                    <p class="card-text" *ngIf="ticket.resolver"><small class="text-muted">Resolved on:
+                                            {{ticket.resolved | date}}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="ticket.collapsed">
+                        <div>
+                            <h5>Amount: {{ticket.amount | currency}}, Submitted on: {{ticket.submitted | date}}</h5>
                         </div>
                     </div>
                 </div>
@@ -30,58 +38,74 @@
         </div>
     </section>
     <br>
-    <h2>Approved Requests:</h2>
+    <h2 style="text-align: center;">Approved Requests:</h2>
+    <section>
+        <div class="row no-gutters">
+            <div class="col-md-4" *ngFor="let ticket of approved" (click)="toggle(ticket)">
+                <div class="card mb-3 mx-auto" style="max-width: 540px;
+                border-radius: 1rem;background-color: rgba(255, 255, 255, 0.8);">
+                    <div *ngIf="!ticket.collapsed">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img [src]="ticket.receipt | safe: 'url'" class="card-img" alt="No Uploaded Receipt"
+                                    style="max-height: 270px;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Status: {{ticket.status}}</h5>
+                                    <h5 class="card-title">Amount: {{ticket.amount | currency}}</h5>
+                                    <p class="card-text">Reimbursement Type: {{ticket.type}}</p>
+                                    <p class="card-text">Description: {{ticket.description}}</p>
+                                    <p class="card-text"><small class="text-muted">Submitted on:
+                                            {{ticket.submitted | date}}</small>
+                                    </p>
+                                    <p class="card-text" *ngIf="ticket.resolver"><small class="text-muted">Resolved on:
+                                            {{ticket.resolved | date}}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="ticket.collapsed">
+                        <div>
+                            <h5>Amount: {{ticket.amount | currency}}, Submitted on: {{ticket.submitted | date}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <h2 style="text-align: center;">Denied Requests:</h2>
+    <section>
+        <div class="row no-gutters">
+            <div class="col-md-4" *ngFor="let ticket of denied" (click)="toggle(ticket)">
+                <div class="card mb-3 mx-auto" style="max-width: 540px;
+                    border-radius: 1rem;background-color: rgba(255, 255, 255, 0.8);">
+                    <div *ngIf="!ticket.collapsed">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img [src]="ticket.receipt | safe: 'url'" class="card-img" alt="No Uploaded Receipt"
+                                    style="max-height: 270px;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Status: {{ticket.status}}</h5>
+                                    <h5 class="card-title">Amount: {{ticket.amount | currency}}</h5>
+                                    <p class="card-text">Reimbursement Type: {{ticket.type}}</p>
+                                    <p class="card-text">Description: {{ticket.description}}</p>
+                                    <p class="card-text"><small class="text-muted">Submitted on:
+                                            {{ticket.submitted | date}}</small>
+                                    </p>
+                                    <p class="card-text" *ngIf="ticket.resolver"><small class="text-muted">Resolved on:
+                                            {{ticket.resolved | date}}</small></p>
+                                </div>
+                            </div>
+                        </div>
 
-    <section>
-        <div class="row no-gutters">
-            <div class="col-md-4" *ngFor="let ticket of approved">
-                <div class="card mb-3 mx-auto" style="max-width: 540px;height:270px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img [src]="ticket.receipt | safe: 'url'" class="card-img" alt="No Uploaded Receipt"
-                                style="max-height: 270px;">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Status: {{ticket.status}}</h5>
-                                <h5 class="card-title">Amount: {{ticket.amount | currency}}</h5>
-                                <p class="card-text">Reimbursement Type: {{ticket.type}}</p>
-                                <p class="card-text">Description: {{ticket.description}}</p>
-                                <p class="card-text"><small class="text-muted">Submitted on:
-                                        {{ticket.submitted | date}}</small>
-                                </p>
-                                <p class="card-text" *ngIf="ticket.resolver"><small class="text-muted">Resolved on:
-                                        {{ticket.resolved | date}}</small></p>
-                            </div>
-                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <br>
-    <h2>Denied Requests:</h2>
-    <section>
-        <div class="row no-gutters">
-            <div class="col-md-4" *ngFor="let ticket of denied">
-                <div class="card mb-3 mx-auto" style="max-width: 540px;height:270px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img [src]="ticket.receipt | safe: 'url'" class="card-img" alt="No Uploaded Receipt"
-                                style="max-height: 270px;">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Status: {{ticket.status}}</h5>
-                                <h5 class="card-title">Amount: {{ticket.amount | currency}}</h5>
-                                <p class="card-text">Reimbursement Type: {{ticket.type}}</p>
-                                <p class="card-text">Description: {{ticket.description}}</p>
-                                <p class="card-text"><small class="text-muted">Submitted on:
-                                        {{ticket.submitted | date}}</small>
-                                </p>
-                                <p class="card-text" *ngIf="ticket.resolver"><small class="text-muted">Resolved on:
-                                        {{ticket.resolved | date}}</small></p>
-                            </div>
+                    <div *ngIf="ticket.collapsed">
+                        <div>
+                            <h5>Amount: {{ticket.amount | currency}}, Submitted on: {{ticket.submitted | date}}</h5>
                         </div>
                     </div>
                 </div>

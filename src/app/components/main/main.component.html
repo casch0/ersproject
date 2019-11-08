@@ -1,17 +1,19 @@
-<header>
-    <h1>Employee Reimbursement System</h1>
-    <nav>
-        <ul class="nav nav-tabs" *ngIf="manager">
-            <li class="nav-item">
-                <a class="nav-link" href="#" routerLink="employee">Employee Actions</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" routerLink="reimbursements">Manager Actions</a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<hr>
+<div class="bevelBox" style="background-color: rgba(0, 255, 255, 0.2); width:1000px; margin:auto; height: 8rem;border-radius: 1rem;">
+    <header>
+        <h1>Employee Reimbursement System</h1>
+        <nav>
+            <ul class="nav nav-tabs" *ngIf="manager">
+                <li>
+                    <a class="nav-link" href="#" routerLink="employee">Employee Actions</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#" routerLink="reimbursements">Manager Actions</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+</div>
+
 <div>
     <router-outlet></router-outlet>
 </div>
