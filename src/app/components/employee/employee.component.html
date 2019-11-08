@@ -25,8 +25,13 @@
                 <textarea [(ngModel)]="description" name="description" placeholder="Description" cols="50"
                     rows="8"></textarea>
                 <form>
-                    Select a file: <input type="file" name="myFile">
+                    Select a file: <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+                    <button (click)="fileInput.click()">Select File</button>
+                    <button (click)="onUpload()">Upload!</button>
                 </form>
+                <div>
+                    <img [src]="responseUrl" alt="Uploaded Image" style="max-height:500px;" id="preview">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -43,12 +48,15 @@
         <h5>Status: {{ticket.status}}</h5>
         <h5>Type: {{ticket.type}}</h5>
         <h5>Amount: ${{ticket.amount}}</h5>
-        
+
         <h5 *ngIf="ticket.resolver">Resolver: {{ticket.resolver}}</h5>
         <h5>Submitted on {{ticket.submitted}}</h5>
         <h5 *ngIf="ticket.resolver">{{ticket.status}} on {{ticket.resolved}}</h5>
         <div>
             <p>{{ticket.description}}</p>
+        </div>
+        <div>
+            <img [src]="ticket.receipt | safe: 'url'" alt="Uploaded receipt" style="max-height:300px;">
         </div>
     </div>
 </section>

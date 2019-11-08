@@ -4,7 +4,7 @@ export class Reimbursement {
     submitted: string;
     resolved: string;
     description: string;
-    receipt: Blob;
+    receipt: string;
     author: string;
     resolver: string;
     status: string;

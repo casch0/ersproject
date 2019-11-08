@@ -26,6 +26,9 @@ export class ReimbursementsComponent implements OnInit {
       role: this.loginService.currentRole
     }
     this.tickets = await this.ticketService.viewTicketHttp(credentials);
+    this.pending=[];
+    this.approved= [];
+    this.denied= [];
     if (this.tickets !== undefined && this.tickets.length != 0) {
       this.tickets.forEach(ticket => {
         switch ("" + ticket.type) {
@@ -45,7 +48,7 @@ export class ReimbursementsComponent implements OnInit {
           this.pending.push(ticket); break; }
           case "2": { ticket.status = "Approved"; 
           this.approved.push(ticket); break; }
-          case "3": { ticket.status = "Declined"; 
+          case "3": { ticket.status = "Denied"; 
           this.denied.push(ticket); break; }
         }
       });

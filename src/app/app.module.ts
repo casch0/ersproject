@@ -11,6 +11,8 @@ import { EmployeeComponent } from './components/employee/employee.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginService } from './services/login.service';
 import { TicketService } from './services/ticket.service';
+import { UploadService } from './services/upload.service';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { TicketService } from './services/ticket.service';
     ReimbursementsComponent,
     MainComponent,
     LoginComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { TicketService } from './services/ticket.service';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [LoginService, TicketService],
+  providers: [LoginService, TicketService, UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

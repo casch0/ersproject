@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TicketService } from 'src/app/services/ticket.service';
 import { LoginService } from 'src/app/services/login.service';
 import { Reimbursement } from 'src/app/models/reimbursement';
+import { UploadService } from '../../services/upload.service';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-employee',
@@ -14,23 +16,40 @@ export class EmployeeComponent implements OnInit {
   amount = 0;
   description = "";
   tickets: Reimbursement[];
+  selectedFile: File;
+  responseUrl: SafeUrl;
+  dirtyUrl: string;
 
 
-
-  constructor(private ticketService: TicketService, private loginService: LoginService) { }
+  constructor(private uploadService: UploadService, 
+    private ticketService: TicketService, 
+    private loginService: LoginService,
+    private sanitizer: DomSanitizer
+    ) { }
 
   ngOnInit() {
     this.getTickets();
-    
+
+  }
+
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0]
+  }
+
+  async onUpload(){
+    let resp = await this.uploadService.uploadHttp(this.selectedFile);
+    this.dirtyUrl = resp;
+    this.responseUrl = this.sanitizer.bypassSecurityTrustUrl(resp);
   }
 
   async submitTicket() {
     const newTicket = {
       type: this.type,
       amount: this.amount,
-      description: this.description
+      description: this.description,
+      receipt: this.dirtyUrl
     }
-    const ret = await this.ticketService.newTicketHttp(newTicket);
+    await this.ticketService.newTicketHttp(newTicket);
     this.getTickets();
   }
 
@@ -42,22 +61,21 @@ export class EmployeeComponent implements OnInit {
     this.tickets = await this.ticketService.viewTicketHttp(credentials);
     if (this.tickets !== undefined && this.tickets.length != 0) {
       this.tickets.forEach(ticket => {
-        switch (""+ticket.status) {
-          case "1": {ticket.status = "Pending"; break;}
-          case "2": {ticket.status = "Approved"; break;}
-          case "3": {ticket.status = "Declined"; break;}
+        switch ("" + ticket.status) {
+          case "1": { ticket.status = "Pending"; break; }
+          case "2": { ticket.status = "Approved"; break; }
+          case "3": { ticket.status = "Declined"; break; }
         }
-        switch (""+ticket.type) {
-          case "1":{ ticket.type = "Lodging"; break;}
-          case "2":{ ticket.type = "Travel"; break;}
-          case "3":{ ticket.type = "Food"; break;}
-          case "4":{ ticket.type = "Other"; break;}
+        switch ("" + ticket.type) {
+          case "1": { ticket.type = "Lodging"; break; }
+          case "2": { ticket.type = "Travel"; break; }
+          case "3": { ticket.type = "Food"; break; }
+          case "4": { ticket.type = "Other"; break; }
         }
         var d = new Date(ticket.submitted);
         var formattedDate = d.getMonth() + "/" + (d.getDate() + 1) + "/" + d.getFullYear();
-        ticket.submitted = formattedDate
+        ticket.submitted = formattedDate;
       });
     }
   }
-
 }
