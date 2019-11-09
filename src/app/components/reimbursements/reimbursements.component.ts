@@ -13,10 +13,16 @@ export class ReimbursementsComponent implements OnInit {
   pending: Reimbursement[] = [];
   approved: Reimbursement[]= [];
   denied: Reimbursement[]= [];
+  selectedImage: string;
+
   constructor(private ticketService: TicketService, private loginService: LoginService) { }
 
   ngOnInit() {
     this.getTickets();
+  }
+
+  imageSelect(selected: string){
+    this.selectedImage = selected;
   }
 
 

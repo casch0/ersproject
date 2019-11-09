@@ -8,8 +8,11 @@
                     <div *ngIf="!ticket.collapsed">
                         <div class="row no-gutters">
                             <div class="col-md-4">
-                                <img [src]="ticket.receipt | safe: 'url'" class="card-img" alt="No Uploaded Receipt"
-                                    style="max-height: 270px;">
+                                <div>
+                                    <img [src]="ticket.receipt | safe: 'url'" class="card-img" alt="No Uploaded Receipt"
+                                        data-toggle="modal" data-target="#imagemodal"
+                                        (click)="imageSelect(ticket.receipt)">
+                                </div>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -32,9 +35,10 @@
                         </div>
                     </div>
                     <div style="display: inline-flex; text-align: center;">
-                    <button type="button" (click)="approveTicket(ticket)" style="width:200px; margin-left: 50px;">Approve Request</button>
-                    <button type="button" (click)="denyTicket(ticket)" style="width:200px;">Deny Request</button>
-                </div>
+                        <button type="button" (click)="approveTicket(ticket)"
+                            style="width:200px; margin-left: 50px;">Approve Request</button>
+                        <button type="button" (click)="denyTicket(ticket)" style="width:200px;">Deny Request</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -49,8 +53,11 @@
                     <div *ngIf="!ticket.collapsed">
                         <div class="row no-gutters">
                             <div class="col-md-4">
-                                <img [src]="ticket.receipt | safe: 'url'" class="card-img" alt="No Uploaded Receipt"
-                                    style="max-height: 270px;">
+                                <div>
+                                    <img [src]="ticket.receipt | safe: 'url'" class="card-img" alt="No Uploaded Receipt"
+                                        data-toggle="modal" data-target="#imagemodal"
+                                        (click)="imageSelect(ticket.receipt)">
+                                </div>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -86,8 +93,11 @@
                     <div *ngIf="!ticket.collapsed">
                         <div class="row no-gutters">
                             <div class="col-md-4">
-                                <img [src]="ticket.receipt | safe: 'url'" class="card-img" alt="No Uploaded Receipt"
-                                    style="max-height: 270px;">
+                                <div>
+                                    <img [src]="ticket.receipt | safe: 'url'" class="card-img" alt="No Uploaded Receipt"
+                                        data-toggle="modal" data-target="#imagemodal"
+                                        (click)="imageSelect(ticket.receipt)">
+                                </div>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -115,19 +125,20 @@
         </div>
     </section>
 </section>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body text-center">
+                <img [src]="selectedImage | safe: 'url'" id="imagepreview">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

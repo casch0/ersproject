@@ -54,8 +54,11 @@
                 <div class="row no-gutters" (click)="toggle(ticket)">
                     <div *ngIf="!ticket.collapsed">
                         <div class="col-md-4">
-                            <img [src]="ticket.receipt | safe: 'url'" class="card-img" alt="No Uploaded Receipt"
-                                style="max-height: 270px;">
+                            <div>
+                                <img [src]="ticket.receipt | safe: 'url'" class="card-img" alt="No Uploaded Receipt"
+                                    data-toggle="modal" data-target="#imagemodal" (click)="imageSelect(ticket.receipt)"
+                                    (click)="toggle(ticket)">
+                            </div>
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -73,32 +76,12 @@
                                     Resolved by {{ticket.resolver}}
                                 </p>
                             </div>
-            <div class="card mb-3 mx-auto" style="max-width: 540px; height:270px;">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <a href="#" id="pop" data-toggle="modal" data-target="#imagemodal"
-                            (click)="imageSelect(ticket.receipt)">
-                            <img [src]="ticket.receipt | safe: 'url'" class="card-img" alt="No Uploaded Receipt"
-                                style="max-height: 270px;">
-                        </a>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Status: {{ticket.status}}</h5>
-                            <h5 class="card-title">Amount: {{ticket.amount | currency}}</h5>
-                            <p class="card-text">Reimbursement Type: {{ticket.type}}</p>
-                            <p class="card-text">Description: {{ticket.description}}</p>
-                            <p class="card-text"><small class="text-muted">Submitted on:
-                                    {{ticket.submitted | date}}</small>
-                            </p>
-                            <p class="card-text" *ngIf="ticket.resolver"><small class="text-muted">Resolved on:
-                                    {{ticket.resolved | date}}</small></p>
                         </div>
                     </div>
                     <div *ngIf="ticket.collapsed">
-                            <div>
-                                    <h5>Amount: {{ticket.amount | currency}}, Submitted on: {{ticket.submitted | date}}</h5>
-                            </div>
+                        <div>
+                            <h5>Amount: {{ticket.amount | currency}}, Submitted on: {{ticket.submitted | date}}</h5>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -113,10 +96,8 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
             </div>
-            <div class="modal-body" style="height:100vh; width: auto;">
-                <div class="row">
-                    <img [src]="selectedImage | safe: 'url'" id="imagepreview">
-                </div>
+            <div class="modal-body text-center">
+                <img [src]="selectedImage | safe: 'url'" id="imagepreview">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
