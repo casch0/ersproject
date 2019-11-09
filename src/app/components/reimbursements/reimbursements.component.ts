@@ -44,12 +44,12 @@ export class ReimbursementsComponent implements OnInit {
           case "3": { ticket.type = "Food"; break; }
           case "4": { ticket.type = "Other"; break; }
         }
-        var d = new Date(ticket.submitted);
-        var formattedDate = d.getMonth() + "/" + (d.getDate() + 1) + "/" + d.getFullYear();
-        ticket.submitted = formattedDate
-        var e = new Date(ticket.resolved);
-        var formattedDate = e.getMonth() + "/" + (e.getDate() + 1) + "/" + e.getFullYear();
-        ticket.resolved = formattedDate
+        //var d = new Date(ticket.submitted);
+        //var formattedDate = d.getMonth() + "/" + (d.getDate() + 1) + "/" + d.getFullYear();
+        //ticket.submitted = formattedDate
+        //var e = new Date(ticket.resolved);
+        //var formattedDate = e.getMonth() + "/" + (e.getDate() + 1) + "/" + e.getFullYear();
+        //ticket.resolved = formattedDate
         switch ("" + ticket.status) {
           case "1": { ticket.status = "Pending"; 
           this.pending.push(ticket); break; }

@@ -78,8 +78,8 @@ export class EmployeeComponent implements OnInit {
           case "3": { ticket.type = "Food"; break; }
           case "4": { ticket.type = "Other"; break; }
         }
-        var d = new Date(ticket.submitted);
-        var formattedDate = d.getMonth() + "/" + (d.getDate() + 1) + "/" + d.getFullYear();
+        //var d = new Date(ticket.submitted);
+        //var formattedDate = d.getMonth() + "/" + (d.getDate() + 1) + "/" + d.getFullYear();
         // ticket.submitted = formattedDate;
       });
     }
