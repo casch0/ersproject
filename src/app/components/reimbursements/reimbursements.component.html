@@ -17,8 +17,6 @@
                                     <h5 class="card-title">Amount: {{ticket.amount | currency}}</h5>
                                     <p class="card-text">Reimbursement Type: {{ticket.type}}</p>
                                     <p class="card-text">Description: {{ticket.description}}</p>
-                                    <button type="button" (click)="approveTicket(ticket)">Approve Request</button>
-                                    <button type="button" (click)="denyTicket(ticket)">Deny Request</button>
                                     <p class="card-text"><small class="text-muted">Submitted on:
                                             {{ticket.submitted | date}}</small>
                                     </p>
@@ -33,6 +31,10 @@
                             <h5>Amount: {{ticket.amount | currency}}, Submitted on: {{ticket.submitted | date}}</h5>
                         </div>
                     </div>
+                    <div style="display: inline-flex; text-align: center;">
+                    <button type="button" (click)="approveTicket(ticket)" style="width:200px; margin-left: 50px;">Approve Request</button>
+                    <button type="button" (click)="denyTicket(ticket)" style="width:200px;">Deny Request</button>
+                </div>
                 </div>
             </div>
         </div>
@@ -113,3 +115,19 @@
         </div>
     </section>
 </section>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
