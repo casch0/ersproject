@@ -48,47 +48,33 @@
 </div>
 
 <section>
-    <div class="row no-gutters">
-        <div class="col-md-4" *ngFor="let ticket of tickets">
-            <div class="card mb-3 mx-auto" style="max-width: 540px;background-color: rgba(255, 255, 255, 0.8);">
-                <div class="row no-gutters" (click)="toggle(ticket)">
-                    <div *ngIf="!ticket.collapsed">
-                        <div>
-                            <div>
-                                <h6>Author: {{ticket.author}}</h6>
-                                <h6>Submitted: {{ticket.submitted | date:'shortDate'}}</h6>
-                                <h6>Status: {{ticket.status}}</h6>
-                                <h6>Resolver: {{ticket.resolver}}</h6>
-                                <h6>Resolved: {{ticket.resolved | date:'shortDate'}}</h6>
-                                <h6> Type: {{ticket.type}}</h6>
-                                <div style="text-align: right; display:inline-flex;width:100%">
-                                    <div style="text-align: left; width:40%">
-                                        <div data-toggle="modal" data-target="#imagemodal"
-                                            style="padding:0; height:1.5rem; width:80%;border-style: solid;
-                                            border-radius: 1rem; background-color: rgb(192, 192, 192);text-align: center;"
-                                            (click)="imageSelect(ticket.receipt)" (click)="toggle(ticket)">View
-                                            Receipt</div>
-                                        </div>
-                                    <div style="width:40%">Amount: {{ticket.amount | currency}}</div>
-                                </div>
-                                    <div>{{ticket.description}}</div>
+    <div class="col mx-auto no-gutters ticket-box">
+        <div class="mx-auto" *ngFor="let ticket of tickets">
+            <div class="card mb-3 mx-auto">
+                <div class="row no-gutters mx-auto" class="ticket-card-head w-100" (click)="toggle(ticket)">
+                    <h6 class="mx-4">Author: {{ticket.author}}</h6>
+                    <h6 class="mx-1">Submitted: {{ticket.submitted | date:'shortDate'}}</h6>
+                    <h6 class="mx-4">Status: {{ticket.status}}</h6>
+                </div>
+                <div *ngIf="!ticket.collapsed">
+                    <h6 class="mx-4">Resolver: {{ticket.resolver}}</h6>
+                    <h6 class="mx-1">Resolved: {{ticket.resolved | date:'shortDate'}}</h6>
+                    <h6 class="mx-4"> Type: {{ticket.type}}</h6>
+                    <div style="text-align: right; display:inline-flex;width:100%">
+                        <div style="text-align: left; width:40%">
+                            <div data-toggle="modal" data-target="#imagemodal" class="image-modal ml-4 ticket-card-head"
+                                (click)="imageSelect(ticket.receipt)">
+                                View Receipt
                             </div>
                         </div>
+                        <div style="width:30%">Amount: {{ticket.amount | currency}}</div>
                     </div>
-                    <div *ngIf="ticket.collapsed">
-                        <div>
-                            <h6>Author: {{ticket.author}}</h6>
-                            <h6>Submitted: {{ticket.submitted | date:'shortDate'}}</h6>
-                            <h6>Status: {{ticket.status}}</h6>
-                        </div>
-                    </div>
+                    <div>{{ticket.description}}</div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-
 
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

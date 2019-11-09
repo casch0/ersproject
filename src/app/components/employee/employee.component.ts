@@ -20,6 +20,7 @@ export class EmployeeComponent implements OnInit {
   responseUrl: SafeUrl;
   dirtyUrl: string;
   selectedImage: string;
+  isCollapsed = false;
 
 
   constructor(private uploadService: UploadService,

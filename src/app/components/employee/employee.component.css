@@ -7,3 +7,38 @@ h6 {
     text-align: center;
     margin: 0;
 }
+
+.image-modal{
+    display:inline-block; 
+    border-width: 1px; 
+    border-style: solid;
+    border-radius: 1rem; 
+    width: 150px; 
+    text-align: center;
+    margin: 0;
+    border-color: blue;
+    color: blue;
+}
+
+.ticket-card-head{
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.ticket-card-head:hover{
+    background: rgba(241, 236, 236, 0.924);
+    cursor: pointer;
+}
+
+.ticket-card-head:active{
+    background: rgba(141, 189, 219, 0.911);
+}
+
+.ticket-card-head:focus{
+    background-color: rgba(174, 209, 231, 0.952)
+}
+
+.ticket-box{
+    background-color: white;
+    opacity: .8;
+    max-width: 600px;
+}
