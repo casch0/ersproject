@@ -19,6 +19,7 @@ export class EmployeeComponent implements OnInit {
   selectedFile: File;
   responseUrl: SafeUrl;
   dirtyUrl: string;
+  selectedImage: string;
 
 
   constructor(private uploadService: UploadService,
@@ -30,6 +31,10 @@ export class EmployeeComponent implements OnInit {
   ngOnInit() {
     this.getTickets();
 
+  }
+
+  imageSelect(selected: string){
+    this.selectedImage = selected;
   }
 
   onFileChanged(event) {
