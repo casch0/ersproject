@@ -56,6 +56,7 @@ export class ReimbursementsComponent implements OnInit {
               ticket.status = "Pending";
               this.pending.push(ticket); break;
             }
+            break;
           }
           case "2": {
             ticket.status = "Approved";

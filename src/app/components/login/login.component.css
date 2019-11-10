@@ -31,6 +31,19 @@ html {
   
   
   /* STRUCTURE */
+
+  .logout{
+    height: 80px;
+    width: auto;
+    transform: rotate(-5deg);
+  }
+
+  .logout-button{
+    position: absolute;
+    top: 270px;
+    left: 150px;
+    z-index:1;
+  }
   
   .wrapper {
     display: flex;

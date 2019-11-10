@@ -16,9 +16,14 @@ export class LoginComponent implements OnInit {
   // Flag set to true when user supplies invalid input
   invalidInput = false;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService) { 
+  }
 
   ngOnInit() {
+  }
+
+  logOut() {
+    this.authenticated = !this.authenticated;
   }
 
   async submit() {
@@ -26,11 +31,14 @@ export class LoginComponent implements OnInit {
       username: this.inputUsername,
       password: this.inputPassword
     };
-    if(await this.loginService.loginHttp(credentials)){
+    if (await this.loginService.loginHttp(credentials)) {
       this.authenticated = true;
     }
     else {
       this.invalidInput = true;
     }
+    this.inputPassword = "";
+    this.inputUsername = "";
   }
+
 }

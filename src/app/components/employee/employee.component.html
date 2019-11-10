@@ -49,37 +49,47 @@
 </div>
 
 <section>
-    <div class="col mx-auto no-gutters ticket-box">
-        <div class="mx-auto" *ngFor="let ticket of tickets">
-            <div class="card mb-3 mx-auto">
+    <div class="row mx-auto">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+            <div class="col mx-auto no-gutters ticket-box">
+                <div class="mx-auto" *ngFor="let ticket of tickets">
+                    <div class="card mb-3 mx-auto">
 
-                <div *ngIf="ticket.collapsed" class="row no-gutters mx-auto" class="ticket-card-head w-100"
-                    (click)="toggle(ticket)">
-                    <h6 class="mx-4" [ngClass]="buttonClassSelect(ticket.status)">Status: {{ticket.status}}</h6>
-                    <h6 class="mx-1">Submitted: {{ticket.submitted | date:'shortDate'}}</h6>
-                    <h6 class="mx-4">Ticket Number: {{ticket.id}}</h6>
-                </div>
+                        <div *ngIf="ticket.collapsed" class="row no-gutters mx-auto" class="ticket-card-head w-100"
+                            (click)="toggle(ticket)">
+                            <h6 class="mx-4" [ngClass]="buttonClassSelect(ticket.status)">Status: {{ticket.status}}</h6>
+                            <h6 class="mx-1">Submitted: {{ticket.submitted | date:'shortDate'}}</h6>
+                            <h6 class="mx-4">Ticket Number: {{ticket.id}}</h6>
+                        </div>
 
-                <div *ngIf="!ticket.collapsed">
-                    <div class="row no-gutters mx-auto" class="ticket-card-head w-100" (click)="toggle(ticket)">
-                        <h6 class="mx-4">Author: {{ticket.author}}</h6>
-                        <h6 class="mx-1">Submitted: {{ticket.submitted | date:'shortDate'}}</h6>
-                        <h6 class="mx-4">Ticket Number: {{ticket.id}}</h6>
-                    </div>
-                    <div class="ticket-card">
-                        <h6 class="mx-4">Resolver: {{ticket.resolver}}</h6>
-                        <h6 class="mx-1">Resolved: {{ticket.resolved | date:'shortDate'}}</h6>
-                        <h6 class="mx-4">Type: {{ticket.type}}</h6>
-                        <h6 class="mx-4">Amount: {{ticket.amount | currency}}</h6>
-                        <h6 data-toggle="modal" data-target="#imagemodal" class="image-modal ml-1 mr-1 ticket-card-head"
-                            (click)="imageSelect(ticket.receipt)">
-                            View Receipt
-                        </h6>
-                        <h6 class="mx-4" [ngClass]="buttonClassSelect(ticket.status)">Status: {{ticket.status}}</h6>
-                        <div class="ticket-desc mx-4">Description: {{ticket.description}}</div>
+                        <div *ngIf="!ticket.collapsed">
+                            <div class="row no-gutters mx-auto" class="ticket-card-head w-100" (click)="toggle(ticket)">
+                                <h6 class="mx-4">Author: {{ticket.author}}</h6>
+                                <h6 class="mx-1">Submitted: {{ticket.submitted | date:'shortDate'}}</h6>
+                                <h6 class="mx-4">Ticket Number: {{ticket.id}}</h6>
+                            </div>
+                            <div class="ticket-card">
+                                <h6 class="mx-4">Resolver: {{ticket.resolver}}</h6>
+                                <h6 class="mx-1">Resolved: {{ticket.resolved | date:'shortDate'}}</h6>
+                                <h6 class="mx-4">Type: {{ticket.type}}</h6>
+                                <h6 class="mx-4">Amount: {{ticket.amount | currency}}</h6>
+                                <h6 data-toggle="modal" data-target="#imagemodal"
+                                    class="image-modal ml-1 mr-1 ticket-card-head"
+                                    (click)="imageSelect(ticket.receipt)">
+                                    View Receipt
+                                </h6>
+                                <h6 class="mx-4" [ngClass]="buttonClassSelect(ticket.status)">Status: {{ticket.status}}
+                                </h6>
+                                <div class="ticket-desc mx-4">Description: {{ticket.description}}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-md-3">
         </div>
     </div>
 </section>
