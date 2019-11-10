@@ -18,13 +18,14 @@ html {
   }
   
   h2 {
+    font-family: 'Rye';
     text-align: center;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: 600;
     text-transform: uppercase;
     display:inline-block;
     margin: 40px 8px 10px 8px; 
-    color: #cccccc;
+    color: rgb(3, 33, 66);
   }
   
   
@@ -47,7 +48,7 @@ html {
     background: #fff;
     padding: 30px;
     width: 90%;
-    max-width: 450px;
+    max-width: 500px;
     position: relative;
     padding: 0px;
     -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
@@ -227,6 +228,9 @@ html {
   } 
   
   #icon {
-    width:60%;
+    width:75%;
+    margin: 20px;
+    border: 2px;
+    border-style: inset;
   }
   

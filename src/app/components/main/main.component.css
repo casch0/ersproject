@@ -6,10 +6,16 @@ header {
 }
 
 h1 {
-    flex-grow: 1;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 3rem;
+    font-family: 'Rye';
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    display:inline-block;
+    margin: 20px 8px 10px 8px; 
+    color: rgb(3, 33, 66);
 }
+
 nav {
     height: 30px;
 }
