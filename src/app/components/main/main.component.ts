@@ -9,6 +9,7 @@ import { LoginService } from 'src/app/services/login.service';
 export class MainComponent implements OnInit {
 
   manager = false;
+  user: string;
 
   constructor(private loginService: LoginService) { }
 
@@ -16,6 +17,7 @@ export class MainComponent implements OnInit {
     if (this.loginService.currentRole === 2){
       this.manager = true;
     }
+    this.user = this.loginService.currentUser;
   }
 
 }

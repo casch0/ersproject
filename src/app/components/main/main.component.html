@@ -1,13 +1,19 @@
-<div class="bevelBox" style="background-color: rgba(0, 255, 255, 0.2); width:1000px; margin:auto; height: 8rem;border-radius: 1rem;">
+<div class="bevelBox"
+    style="background-color: rgba(0, 255, 255, 0.2); width:1000px; margin:auto; height: 8rem;border-radius: 1rem;">
     <header>
         <h1>Employee Reimbursement System</h1>
         <nav>
             <ul class="nav nav-tabs" *ngIf="manager">
                 <li>
-                    <a class="nav-link" href="#" routerLink="employee">Employee Actions</a>
+                    <a class="nav-link" href="#" routerLink="employee">Welcome {{user}}</a>
                 </li>
                 <li>
                     <a class="nav-link" href="#" routerLink="reimbursements">Manager Actions</a>
+                </li>
+            </ul>
+            <ul class="nav nav-tabs" *ngIf="!manager">
+                <li>
+                    <a class="nav-link" href="#" routerLink="employee">Welcome {{user}}</a>
                 </li>
             </ul>
         </nav>

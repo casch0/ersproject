@@ -7,3 +7,124 @@ h6 {
   text-align: center;
   margin: 0;
 }
+
+.top-box{
+  padding-top: 25px;
+}
+
+.ticket-desc{
+  display:inline-block; 
+  border-width: 1px; 
+  border-style: solid;
+  border-radius: 1rem; 
+  text-align: left;
+  width: 508px;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.image-modal{
+  display:inline-block; 
+  border-width: 1px; 
+  border-style: solid;
+  border-radius: 2rem; 
+  width: 150px; 
+  text-align: center;
+  margin: 0;
+  border-color: blue;
+  color: blue;
+}
+
+.buttons{
+  text-align: center;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.approve-button{
+  display:inline-block; 
+  border-width: 1px; 
+  border-style: solid;
+  border-radius: 2rem; 
+  width: 150px; 
+  text-align: center;
+  margin: 0;
+  border-color: limegreen;
+  color: limegreen;
+}
+
+.approve-button:hover{
+  background: rgba(179, 246, 173, 0.993);
+  cursor: pointer;
+}
+
+.approve-button:active{
+  background: rgba(153, 243, 145, 0.993);
+}
+
+.approve-button:focus{
+  background-color: rgba(189, 255, 183, 0.822);
+}
+
+.deny-button{
+  display:inline-block; 
+  border-width: 1px; 
+  border-style: solid;
+  border-radius: 2rem; 
+  width: 150px;
+  text-align: center;
+  margin: 0;
+  border-color: rgb(253, 45, 45);
+  color: rgb(253, 45, 45);
+}
+
+.deny-button:hover{
+  background: rgba(253, 190, 190, 0.993);
+  cursor: pointer;
+}
+
+.deny-button:active{
+  background: rgba(250, 136, 136, 0.993);
+}
+
+.deny-button:focus{
+  background-color: rgba(250, 136, 136, 0.993);
+}
+
+.ticket-body{
+  text-align: right;
+  display:inline-flex;
+  width:100%;
+  border-radius: 2rem;
+}
+
+.less-opaque{
+  opacity: .7;
+}
+
+.ticket-card-head{
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 2rem;
+}
+
+.ticket-card-head:hover{
+  background: rgba(241, 236, 236, 0.7);
+  cursor: pointer;
+}
+
+.ticket-card-head:active{
+  background: rgba(141, 189, 219, 0.7);
+}
+
+.ticket-card-head:focus{
+  background-color: rgba(174, 209, 231, 0.7)
+}
+
+.ticket-box{
+  background-color: rgba(255, 255, 255, .6);
+  max-width: 600px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}

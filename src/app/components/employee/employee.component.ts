@@ -34,6 +34,12 @@ export class EmployeeComponent implements OnInit {
 
   }
 
+  buttonClassSelect(status: string){
+    if(status === "Approved") return "approve-button";
+    else if(status == "Declined") return "deny-button";
+    else return "";
+  }
+
   imageSelect(selected: string){
     this.selectedImage = selected;
   }
@@ -57,6 +63,12 @@ export class EmployeeComponent implements OnInit {
     }
     await this.ticketService.newTicketHttp(newTicket);
     this.getTickets();
+    this.type = 0;
+    this.amount = 0;
+    this.description = "";
+    this.dirtyUrl = "";
+    this.selectedImage = "";
+    this.responseUrl = "";
   }
 
   async getTickets() {

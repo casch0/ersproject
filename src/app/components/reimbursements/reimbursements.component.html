@@ -1,123 +1,31 @@
 <section>
-    <h2 style="text-align: center;">Pending Requests:</h2>
-    <section>
-        <div class="row no-gutters">
-            <div class="col-md-4" *ngFor="let ticket of pending">
-                <div class="card mb-3 mx-auto" style="max-width: 540px;background-color: rgba(255, 255, 255, 0.8);">
-                    <div class="row no-gutters" (click)="toggle(ticket)">
-                        <div *ngIf="!ticket.collapsed">
-                            <div>
-                                <div>
-                                    <h6>Author: {{ticket.author}}</h6>
-                                    <h6>Submitted: {{ticket.submitted | date:'shortDate'}}</h6>
-                                    <h6>Status: {{ticket.status}}</h6>
-                                    <h6>Resolver: {{ticket.resolver}}</h6>
-                                    <h6>Resolved: {{ticket.resolved | date:'shortDate'}}</h6>
-                                    <h6> Type: {{ticket.type}}</h6>
-                                    <div style="display: inline-flex; text-align: center;">
-                                        <div style="display:inline-flex;">
-                                            <div data-toggle="modal" data-target="#imagemodal"
-                                                style="padding:0; height:1.5rem; width:10 rem;"
-                                                (click)="imageSelect(ticket.receipt)" (click)="toggle(ticket)">View
-                                                Receipt</div>
-                                        </div>
-                                        <div style="display:inline-flex;">Amount: {{ticket.amount | currency}}</div>
-                                        <div>{{ticket.description}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div *ngIf="ticket.collapsed">
-                            <div>
-                                <h6>Author: {{ticket.author}}</h6>
-                                <h6>Submitted: {{ticket.submitted | date:'shortDate'}}</h6>
-                                <h6>Status: {{ticket.status}}</h6>
-                            </div>
-                        </div>
+    <section class="top-box">
+        <div class="col mx-auto no-gutters ticket-box">
+            <h2 style="text-align: center;">Pending Requests</h2>
+            <div class="mx-auto" *ngFor="let ticket of pending">
+                <div class="card mb-3 mx-auto">
+                    <div class="row no-gutters mx-auto" class="ticket-card-head w-100" (click)="toggle(ticket)">
+                        <h6 class="mx-4">Author: {{ticket.author}}</h6>
+                        <h6 class="mx-1">Submitted: {{ticket.submitted | date:'shortDate'}}</h6>
+                        <h6 class="mx-4">Ticket Number: {{ticket.id}}</h6>
                     </div>
-                    <div style="display: inline-flex; text-align: center;">
-                        <button type="button" (click)="approveTicket(ticket)"
-                            style="width:200px; margin-left: 50px;">Approve Request</button>
-                        <button type="button" (click)="denyTicket(ticket)" style="width:200px;">Deny Request</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <br>
-    <h2 style="text-align: center;">Approved Requests:</h2>
-    <section>
-        <div class="row no-gutters">
-            <div class="col-md-4" *ngFor="let ticket of approved">
-                <div class="card mb-3 mx-auto" style="max-width: 540px;background-color: rgba(255, 255, 255, 0.8);">
-                    <div class="row no-gutters" (click)="toggle(ticket)">
-                        <div *ngIf="!ticket.collapsed">
-                            <div>
-                                <div>
-                                    <h6>Author: {{ticket.author}}</h6>
-                                    <h6>Submitted: {{ticket.submitted | date:'shortDate'}}</h6>
-                                    <h6>Status: {{ticket.status}}</h6>
-                                    <h6>Resolver: {{ticket.resolver}}</h6>
-                                    <h6>Resolved: {{ticket.resolved | date:'shortDate'}}</h6>
-                                    <h6> Type: {{ticket.type}}</h6>
-                                    <div style="display: inline-flex; text-align: center;">
-                                            <div data-toggle="modal" data-target="#imagemodal"
-                                                style="padding:0; height:1.5rem; width:10 rem;border-style: solid;
-                                                border-radius: 1rem; background-color: rgb(192, 192, 192);text-align: left;"
-                                                (click)="imageSelect(ticket.receipt)" (click)="toggle(ticket)">View
-                                                Receipt</div>
-                                        <div style="text-align: right;">Amount: {{ticket.amount | currency}}</div>
-                                        </div>
-                                        <div>{{ticket.description}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div *ngIf="ticket.collapsed">
-                                <div>
-                                    <h6>Author: {{ticket.author}}</h6>
-                                    <h6>Submitted: {{ticket.submitted | date:'shortDate'}}</h6>
-                                    <h6>Status: {{ticket.status}}</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </section>
-    <br>
-    <h2 style="text-align: center;">Denied Requests:</h2>
-    <section>
-        <div class="row no-gutters">
-            <div class="col-md-4" *ngFor="let ticket of denied">
-                <div class="card mb-3 mx-auto" style="max-width: 540px;background-color: rgba(255, 255, 255, 0.8);">
-                    <div class="row no-gutters" (click)="toggle(ticket)">
-                        <div *ngIf="!ticket.collapsed">
-                            <div>
-                                <div>
-                                    <h6>Author: {{ticket.author}}</h6>
-                                    <h6>Submitted: {{ticket.submitted | date:'shortDate'}}</h6>
-                                    <h6>Status: {{ticket.status}}</h6>
-                                    <h6>Resolver: {{ticket.resolver}}</h6>
-                                    <h6>Resolved: {{ticket.resolved | date:'shortDate'}}</h6>
-                                    <h6> Type: {{ticket.type}}</h6>
-                                    <div style="display: inline-flex; text-align: center;">
-                                        <div style="display:inline-flex;">
-                                            <div data-toggle="modal" data-target="#imagemodal"
-                                                style="padding:0; height:1.5rem; width:10 rem;"
-                                                (click)="imageSelect(ticket.receipt)" (click)="toggle(ticket)">View
-                                                Receipt</div>
-                                        </div>
-                                        <div style="display:inline-flex;">Amount: {{ticket.amount | currency}}</div>
-                                        <div>{{ticket.description}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div *ngIf="ticket.collapsed">
-                            <div>
-                                <h6>Author: {{ticket.author}}</h6>
-                                <h6>Submitted: {{ticket.submitted | date:'shortDate'}}</h6>
-                                <h6>Status: {{ticket.status}}</h6>
+                    <div *ngIf="!ticket.collapsed">
+                        <div class="ticket-card">
+                            <h6 class="mx-4">Resolver: {{ticket.resolver}}</h6>
+                            <h6 class="mx-1">Resolved: {{ticket.resolved | date:'shortDate'}}</h6>
+                            <h6 class="mx-4">Type: {{ticket.type}}</h6>
+                            <h6 class="mx-4">Amount: {{ticket.amount | currency}}</h6>
+                            <h6 data-toggle="modal" data-target="#imagemodal"
+                                class="image-modal ml-1 mr-1 ticket-card-head" (click)="imageSelect(ticket.receipt)">
+                                View Receipt
+                            </h6>
+                            <h6 class="mx-4">Status: {{ticket.status}}</h6>
+                            <div class="ticket-desc mx-4">Description: {{ticket.description}}</div>
+                            <div class="buttons">
+                                <div class="approve-button mx-3" (click)="approveTicket(ticket)">Approve
+                                    Request</div>
+                                <div class="deny-button mx-3" (click)="denyTicket(ticket)">Deny
+                                    Request</div>
                             </div>
                         </div>
                     </div>
@@ -125,21 +33,80 @@
             </div>
         </div>
     </section>
-</section>
-<br><br><br><br><br><br><br>
-<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-                        class="sr-only">Close</span></button>
+    <br>
+    <section>
+        <div class="col mx-auto no-gutters ticket-box">
+            <h2 style="text-align: center;">Approved Requests</h2>
+            <div class="mx-auto" *ngFor="let ticket of approved">
+                <div class="card mb-3 mx-auto">
+                    <div class="row no-gutters mx-auto" class="ticket-card-head w-100" (click)="toggle(ticket)">
+                        <h6 class="mx-4">Author: {{ticket.author}}</h6>
+                        <h6 class="mx-1">Submitted: {{ticket.submitted | date:'shortDate'}}</h6>
+                        <h6 class="mx-4">Ticket Number: {{ticket.id}}</h6>
+                    </div>
+                    <div *ngIf="!ticket.collapsed">
+                        <div class="ticket-card">
+                            <h6 class="mx-4">Resolver: {{ticket.resolver}}</h6>
+                            <h6 class="mx-1">Resolved: {{ticket.resolved | date:'shortDate'}}</h6>
+                            <h6 class="mx-4">Type: {{ticket.type}}</h6>
+                            <h6 class="mx-4">Amount: {{ticket.amount | currency}}</h6>
+                            <h6 data-toggle="modal" data-target="#imagemodal"
+                                class="image-modal ml-1 mr-1 ticket-card-head" (click)="imageSelect(ticket.receipt)">
+                                View Receipt
+                            </h6>
+                            <h6 class="mx-4">Status: {{ticket.status}}</h6>
+                            <div class="ticket-desc mx-4">Description: {{ticket.description}}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body text-center">
-                <img [src]="selectedImage | safe: 'url'" id="imagepreview" alt="No image availble">
+        </div>
+    </section>
+    <br>
+    <section>
+        <div class="col mx-auto no-gutters ticket-box">
+            <h2 style="text-align: center;">Denied Requests</h2>
+            <div class="mx-auto" *ngFor="let ticket of denied">
+                <div class="card mb-3 mx-auto">
+                    <div class="row no-gutters mx-auto" class="ticket-card-head w-100" (click)="toggle(ticket)">
+                        <h6 class="mx-4">Author: {{ticket.author}}</h6>
+                        <h6 class="mx-1">Submitted: {{ticket.submitted | date:'shortDate'}}</h6>
+                        <h6 class="mx-4">Ticket Number: {{ticket.id}}</h6>
+                    </div>
+                    <div *ngIf="!ticket.collapsed">
+                        <div class="ticket-card">
+                            <h6 class="mx-4">Resolver: {{ticket.resolver}}</h6>
+                            <h6 class="mx-1">Resolved: {{ticket.resolved | date:'shortDate'}}</h6>
+                            <h6 class="mx-4">Type: {{ticket.type}}</h6>
+                            <h6 class="mx-4">Amount: {{ticket.amount | currency}}</h6>
+                            <h6 data-toggle="modal" data-target="#imagemodal"
+                                class="image-modal ml-1 mr-1 ticket-card-head" (click)="imageSelect(ticket.receipt)">
+                                View Receipt
+                            </h6>
+                            <h6 class="mx-4">Status: {{ticket.status}}</h6>
+                            <div class="ticket-desc mx-4">Description: {{ticket.description}}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </section>
+
+    <br><br><br><br><br><br><br>
+    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img [src]="selectedImage | safe: 'url'" id="imagepreview" alt="No image availble">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
