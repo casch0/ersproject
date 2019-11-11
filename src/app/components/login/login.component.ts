@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
 
   logOut() {
     this.authenticated = !this.authenticated;
+    if(this.invalidInput === true) this.invalidInput = false;
   }
 
   async submit() {
